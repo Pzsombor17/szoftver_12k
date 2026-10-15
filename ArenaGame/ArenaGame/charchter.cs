@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArenaGame
 {
-    public class charachter
+    public abstract class charachter
     {
         private string _name;
         private int _health;
@@ -33,9 +33,42 @@ namespace ArenaGame
                 return false;
             }
         }
-        public string GetDescripiton()
+        public bool Heal(int amount)
+        {
+            if (!IsAlive() || amount < 1)
+            {
+                return false;
+            }
+
+            Health += Health;
+            return true;
+        }
+        public virtual bool TakeDamage(int amount)
+        {
+            if (!IsAlive() || amount < 1)
+            {
+                return false;
+            }
+           
+                
+                Health -= amount;
+                return true;
+            
+        }
+        public virtual string GetDescripiton()
         {
             return $"Name: {Name} ({Health})";
+        }
+        public abstract int AttackPower();
+       
+        public bool Attack(charachter target)
+        {
+            if (target.IsAlive() && IsAlive())
+            {
+                target.TakeDamage(AttackPower());
+                return true;
+            }
+            return false;
         }
 
     }
