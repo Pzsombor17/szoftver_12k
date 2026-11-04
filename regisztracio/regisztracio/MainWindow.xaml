@@ -1,0 +1,88 @@
+﻿<Window x:Class="regisztracio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:regisztracio"
+        mc:Ignorable="d"
+   
+        Title="Regisztráció" Height="900" Width="650" Background="#F0F2F5" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Foreground" Value="#2474BD"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#252A34"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="nameErrorStyle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="red"/>
+            <Setter Property="VerticalAlignment" Value="top"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length,ElementName=nameInput}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Label" x:Key="emailErrorStyle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="red"/>
+            <Setter Property="VerticalAlignment" Value="top"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length,ElementName=emailInput}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Regisztráció" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Label Content="Teljes név:" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="nameInput"/>
+
+        <Label Grid.Row="2" Grid.Column="1" Content="A név megadása kötelező" Style="{StaticResource nameErrorStyle}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="E-mail-cím:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="emailInput"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Az email cim megadasa kotelezo" Style="{StaticResource emailErrorStyle}"/>
+            
+        <Label Grid.Row="5" Grid.Column="0" Content="jelszó: "/>
+            <TextBox Grid.Row="5" Grid.Column="1" x:Name="passwordInput"/>
+
+            <Label Grid.Row="6" Grid.Column="1" Content="A jelszo megadasa kotelezo!"/>
+
+            <CheckBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" x:Name="termsCheckBox" Content="felhasznalasi feltetelek"/>
+            
+            <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="A regisztrációhoz el kell fogadnod a feltételeket!"/>
+
+            <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Regisztráció"/>
+            <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
